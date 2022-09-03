@@ -1,0 +1,44 @@
+{
+  "version": "2.0",
+  "routeKey": "$default",
+  "rawPath": "/",
+  "rawQueryString": "",
+  "headers": {
+    "content-length": "897",
+    "x-amzn-tls-version": "TLSv1.2",
+    "x-forwarded-proto": "https",
+    "link": "<https://www.youtube.com/xml/feeds/videos.xml?channel_id=UCEdBWuoJfyOVEKR9q5x8zsw>; rel=self, <http://pubsubhubbub.appspot.com/>; rel=hub",
+    "x-forwarded-port": "443",
+    "x-forwarded-for": "74.125.210.49",
+    "pragma": "no-cache",
+    "accept": "*/*",
+    "x-amzn-tls-cipher-suite": "ECDHE-RSA-AES128-GCM-SHA256",
+    "x-amzn-trace-id": "Root=1-6312bd79-1df2e921408d35141919c068",
+    "host": "dci2nks6ofzwnb7nipy6yxlufu0igile.lambda-url.us-east-1.on.aws",
+    "content-type": "application/atom+xml",
+    "from": "googlebot(at)googlebot.com",
+    "cache-control": "no-cache,max-age=0",
+    "accept-encoding": "gzip, deflate, br",
+    "user-agent": "FeedFetcher-Google; (+http://www.google.com/feedfetcher.html)"
+  },
+  "requestContext": {
+    "accountId": "anonymous",
+    "apiId": "dci2nks6ofzwnb7nipy6yxlufu0igile",
+    "domainName": "dci2nks6ofzwnb7nipy6yxlufu0igile.lambda-url.us-east-1.on.aws",
+    "domainPrefix": "dci2nks6ofzwnb7nipy6yxlufu0igile",
+    "http": {
+      "method": "POST",
+      "path": "/",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "74.125.210.49",
+      "userAgent": "FeedFetcher-Google; (+http://www.google.com/feedfetcher.html)"
+    },
+    "requestId": "56761849-ce4d-4356-84d8-77b544c7ec2d",
+    "routeKey": "$default",
+    "stage": "$default",
+    "time": "03/Sep/2022:02:35:37 +0000",
+    "timeEpoch": "1662172537806"
+  },
+  "body": "<?xml version='1.0' encoding='UTF-8'?>\n<feed xmlns:yt=\"http://www.youtube.com/xml/schemas/2015\" xmlns=\"http://www.w3.org/2005/Atom\"><link rel=\"hub\" href=\"https://pubsubhubbub.appspot.com\"/><link rel=\"self\" href=\"https://www.youtube.com/xml/feeds/videos.xml?channel_id=UCEdBWuoJfyOVEKR9q5x8zsw\"/><title>YouTube video feed</title><updated>2022-09-03T02:35:35.800659678+00:00</updated><entry>\n  <id>yt:video:P_Ba3Sw0c1M</id>\n  <yt:videoId>P_Ba3Sw0c1M</yt:videoId>\n  <yt:channelId>UCEdBWuoJfyOVEKR9q5x8zsw</yt:channelId>\n  <title>Movie on 9 2 22 at 10 14 PM</title>\n  <link rel=\"alternate\" href=\"https://www.youtube.com/watch?v=P_Ba3Sw0c1M\"/>\n  <author>\n   <name>DWO Fantasy Trash Talk</name>\n   <uri>https://www.youtube.com/channel/UCEdBWuoJfyOVEKR9q5x8zsw</uri>\n  </author>\n  <published>2022-09-03T02:35:16+00:00</published>\n  <updated>2022-09-03T02:35:35.800659678+00:00</updated>\n </entry></feed>\n",
+  "isBase64Encoded": "false"
+}

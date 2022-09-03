@@ -11,3 +11,6 @@
 *.njsproj
 *.sln
 *.sw*
+
+# lambda archive
+lambda.zip
