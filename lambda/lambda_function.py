@@ -17,7 +17,7 @@ async def postNewTrashTalkVideo():
     channel = client.get_channel(id=1015401006575652980)
 
     for video in videos:
-        # await channel.send(f"New trash talk uploaded! {video}")
+        await channel.send(f"New trash talk uploaded! {video}")
         print(f"New trash talk uploaded! {video}")
 
     await client.close()
