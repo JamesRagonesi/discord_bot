@@ -11,6 +11,15 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-    print(f'{client.user} has connected to Discord!')
+    print(f'{client.user.name} has connected to Discord!')
+
+@client.event
+async def on_message(message):
+    # don't let the bot go crazy and talk to itself
+    if message.author == client.user:
+        return
+
+    if message.content == 'sup':
+        await message.channel.send('nmhjc')
 
 client.run(TOKEN)
