@@ -8,13 +8,16 @@ videos = set()
 client = discord.Client()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
-DISCORD_ENABLED = os.getenv('DISCORD_ENABLED', default=False)
+DISCORD_ENABLED = os.getenv('DISCORD_ENABLED', default='false')
+
+#defaults to #trash-talk in DWO server
+CHANNEL_ID = os.getenv('DISCORD_CHANNEL_ID', default='1015641810820927518')
 
 async def postNewTrashTalkVideo():
     await client.wait_until_ready()
 
-    #id for general channel
-    channel = client.get_channel(id=1015401006575652980)
+    #id for trash-talk in DWO server
+    channel = client.get_channel(id=int(CHANNEL_ID))
 
     for video in videos:
         await channel.send(f"New trash talk uploaded! {video}")
@@ -43,15 +46,16 @@ def lambda_handler(event, context):
                     videos.add(entry.find('Atom:link', ns).attrib['href'])
 
                 if(len(videos) > 0):
-                    if(DISCORD_ENABLED):
+                    # print("posting videos to discord")
+                    if(DISCORD_ENABLED == 'true'):
                         client.loop.create_task(postNewTrashTalkVideo())
                         client.run(TOKEN)
                     else:
                         print("New trash talk but discord is disabled")
                 else:
                     print("no new videos found :(")
-            except:
-                print("unsupported body")
+            except Exception as e:
+                print("unsupported body", e)
         else:
             print("unsupported googlebot event")
     else:
