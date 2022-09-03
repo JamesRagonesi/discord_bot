@@ -1,5 +1,6 @@
 # bot.py
 import os
+import fantasy_api
 
 import discord
 from dotenv import load_dotenv
@@ -21,5 +22,11 @@ async def on_message(message):
 
     if message.content == 'sup':
         await message.channel.send('nmhjc')
+
+    if message.content is not None and 'league' in message.content:
+        league_info = fantasy_api.get_league()
+        await message.channel.send(league_info)
+    else:
+        pass
 
 client.run(TOKEN)
