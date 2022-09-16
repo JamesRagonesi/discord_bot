@@ -35,35 +35,68 @@ def getLeagueStandings():
         json_data = json.loads(response.text)
 
         for franchise in json_data['leagueStandings']['franchise']:
-            standings_data[franchise['id']] = { "pf": franchise['avgpf'], "h2hpct": franchise['h2hpct'] }
+            standings_data[franchise['id']] = { "avgpf": franchise['avgpf'], "h2hpct": franchise['h2hpct'] }
 
     except Exception as e:
         print("Error with MFL API", e)
 
     return standings_data
 
+def getWeeklyResults():
+    weekly_results = {}
+
+    try:
+        response = requests.get(f"{BASE_URL('weeklyResults')}")
+        json_data = json.loads(response.text)
+
+        for matchup in json_data['weeklyResults']['matchup']:
+            for franchise in matchup['franchise']:
+                franchise_id = franchise['id']
+                testScore = float(franchise['score'])
+
+                if franchise_id in weekly_results:
+                    if testScore > weekly_results[franchise_id]['highScore']:
+                        weekly_results[franchise_id]['highScore'] = testScore
+
+                    if testScore < weekly_results[franchise_id]['lowScore']:
+                        weekly_results[franchise_id]['lowScore'] = testScore
+                else:
+                    weekly_results[franchise_id] = {
+                        'highScore': testScore,
+                        'lowScore': testScore
+                    }
+
+    except Exception as e:
+        print("Error with MFL API", e)
+
+    return weekly_results
+
 def getPowerRankings():
     leagueStats = []
 
     franchiseInfo = get_league()
     franchiseStandings = getLeagueStandings()
+    weeklyResults = getWeeklyResults()
 
-    ## combine franchise info and stats
+    ## combine franchise info, stats, and weeklyResults
     for key, value in franchiseInfo.items():
-        franchiseStanding = franchiseStandings[key]
         leagueStats.append({
             "name": value,
-            **franchiseStandings[key]
+            **franchiseStandings[key],
+            **weeklyResults[key]
         })
 
+    ## The OIL Power Rating
+    ## ((avg score x 6) + [(high score + low score) x 2] +[ (winning % x 200) x 2])/10
     for teamStats in leagueStats:
-        teamStats['powerScore'] = float(teamStats['pf']) * .5
-        teamStats['powerScore'] += float(teamStats['h2hpct']) * .5
+        teamStats['powerScore'] = ((float(teamStats['avgpf']) * 6)
+            + ((float(teamStats['highScore']) + float(teamStats['lowScore'])) * 2)
+            + (float(teamStats['h2hpct']) * 200))/10
 
     leagueStats = sorted(leagueStats, key=lambda k: k['powerScore'], reverse=True)
 
     discordOutput = 'POWER RANKINGS\n'
     for i, team in enumerate(leagueStats, start=1):
-        discordOutput += f"{i}. {team['name']}, Power Score - {team['powerScore']}\n"
+        discordOutput += f"{i}. {team['name']}, Power Score - {round(team['powerScore'], 2)}\n"
 
     return discordOutput
