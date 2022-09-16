@@ -1,0 +1,8 @@
+# Ignore everything
+**
+
+# ... except for dependencies and source
+!Pipfile
+!Pipfile.lock
+!fantasy_api.py
+!bot.py

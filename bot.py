@@ -16,6 +16,8 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    print(f'received message {message}')
+
     # don't let the bot go crazy and talk to itself
     if message.author == client.user:
         return
@@ -24,6 +26,7 @@ async def on_message(message):
         await message.channel.send('nmhjc')
 
     if message.content == 'power rankings':
+        print(f'calculating power rankings')
         powerRankings = fantasy_api.getPowerRankings()
         await message.channel.send(powerRankings)
 
