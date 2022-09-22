@@ -37,7 +37,6 @@ $ aws ecr get-login-password --region us-east-1 | docker login --username AWS --
 Run this from the root of the project directory
 
 ```
-$ docker build -t discord_bot .
-$ docker tag discord_bot:latest 531923694275.dkr.ecr.us-east-1.amazonaws.com/discord_bot:latest
+$ docker build -t 531923694275.dkr.ecr.us-east-1.amazonaws.com/discord_bot .
 $ docker push 531923694275.dkr.ecr.us-east-1.amazonaws.com/discord_bot:latest
 ```
