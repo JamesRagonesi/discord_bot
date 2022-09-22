@@ -44,27 +44,29 @@ def getLeagueStandings():
 
 def getWeeklyResults():
     weekly_results = {}
+    weeks = [1, 2]
 
     try:
-        response = requests.get(f"{BASE_URL('weeklyResults')}")
-        json_data = json.loads(response.text)
+        for week in weeks:
+            response = requests.get(f"{BASE_URL('weeklyResults')}&W={week}")
+            json_data = json.loads(response.text)
 
-        for matchup in json_data['weeklyResults']['matchup']:
-            for franchise in matchup['franchise']:
-                franchise_id = franchise['id']
-                testScore = float(franchise['score'])
+            for matchup in json_data['weeklyResults']['matchup']:
+                for franchise in matchup['franchise']:
+                    franchise_id = franchise['id']
+                    testScore = float(franchise['score'])
 
-                if franchise_id in weekly_results:
-                    if testScore > weekly_results[franchise_id]['highScore']:
-                        weekly_results[franchise_id]['highScore'] = testScore
+                    if franchise_id in weekly_results:
+                        if testScore > weekly_results[franchise_id]['highScore']:
+                            weekly_results[franchise_id]['highScore'] = testScore
 
-                    if testScore < weekly_results[franchise_id]['lowScore']:
-                        weekly_results[franchise_id]['lowScore'] = testScore
-                else:
-                    weekly_results[franchise_id] = {
-                        'highScore': testScore,
-                        'lowScore': testScore
-                    }
+                        if testScore < weekly_results[franchise_id]['lowScore']:
+                            weekly_results[franchise_id]['lowScore'] = testScore
+                    else:
+                        weekly_results[franchise_id] = {
+                            'highScore': testScore,
+                            'lowScore': testScore
+                        }
 
     except Exception as e:
         print("Error with MFL API", e)
