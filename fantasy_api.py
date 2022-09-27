@@ -44,15 +44,22 @@ def getLeagueStandings():
 
 def getWeeklyResults():
     weekly_results = {}
-    weeks = [1, 2]
+    weeks = range(1, 18)
 
     try:
         for week in weeks:
+            print(f"processing week {week}")
             response = requests.get(f"{BASE_URL('weeklyResults')}&W={week}")
             json_data = json.loads(response.text)
 
             for matchup in json_data['weeklyResults']['matchup']:
                 for franchise in matchup['franchise']:
+                    ## assume the week hasn't been finished
+                    if 'score' not in franchise:
+                        print(f"week {week} wasnt quite ready, returning results")
+                        weekly_results['week'] = week - 1
+                        return weekly_results
+
                     franchise_id = franchise['id']
                     testScore = float(franchise['score'])
 
@@ -97,7 +104,7 @@ def getPowerRankings():
 
     leagueStats = sorted(leagueStats, key=lambda k: k['powerScore'], reverse=True)
 
-    discordOutput = 'POWER RANKINGS\n'
+    discordOutput = f"POWER RANKINGS THROUGH WEEK {weeklyResults['week']}\n"
     for i, team in enumerate(leagueStats, start=1):
         discordOutput += f"{i}. {team['name']}, Power Score - {round(team['powerScore'], 2)}\n"
 

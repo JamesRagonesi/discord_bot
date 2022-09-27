@@ -21,13 +21,15 @@ async def on_message(message):
     # don't let the bot go crazy and talk to itself
     if message.author == client.user:
         return
+    elif 'vfl' in message.content.lower():
+        await message.channel.send("Burn the VFL to the ground!")
     elif message.content is not None and '@1015369557701050478' not in message.content:
         return
 
     if 'sup' in message.content.lower():
         await message.channel.send('nmhjc')
 
-    if 'power rankings' in message.content.lower():
+    if 'rankings' in message.content.lower():
         print(f'calculating power rankings')
         powerRankings = fantasy_api.getPowerRankings()
         await message.channel.send(powerRankings)
