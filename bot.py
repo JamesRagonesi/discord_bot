@@ -23,6 +23,8 @@ async def on_message(message):
         return
     elif 'vfl' in message.content.lower():
         await message.channel.send("Burn the VFL to the ground!")
+    elif 'armtalent' in message.content.lower().replace(" ", ""):
+        await message.channel.send('Trevor Lawrence is the greatest quarterback of all time')
     elif message.content is not None and '@1015369557701050478' not in message.content:
         return
 
@@ -34,8 +36,7 @@ async def on_message(message):
         powerRankings = fantasy_api.getPowerRankings()
         await message.channel.send(powerRankings)
 
-    if 'armtalent' in message.content.lower().replace(" ", ""):
-        await message.channel.send('Trevor Lawrence is the greatest quarterback of all time')
+
 
     if message.content is not None and 'league' in message.content:
         league_info = fantasy_api.get_league()
