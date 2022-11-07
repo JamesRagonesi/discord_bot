@@ -34,7 +34,7 @@ async def on_message(message):
         powerRankings = fantasy_api.getPowerRankings()
         await message.channel.send(powerRankings)
 
-    if 'arm talent' in message.content.lower():
+    if 'armtalent' in message.content.lower().replace(" ", ""):
         await message.channel.send('Trevor Lawrence is the greatest quarterback of all time')
 
     if message.content is not None and 'league' in message.content:
