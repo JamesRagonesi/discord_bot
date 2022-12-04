@@ -10,6 +10,14 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 client = discord.Client()
 
+keywords = {
+    "vfl": "Burn the VFL to the ground!",
+    "armtalent": "Trevor Lawrence is the greatest quarterback of all time",
+    "mikewhite": "Mike White. Mike White. Mike White. https://pbs.twimg.com/media/FimZOxHWYAAxShx.jpg",
+    "jamaal": "He's a touchdown machine!!",
+    "williams": "Williams? Jamaal Williams is a touchdown machine!!"
+}
+
 @client.event
 async def on_ready():
     print(f'{client.user.name} has connected to Discord!')
@@ -21,11 +29,13 @@ async def on_message(message):
     # don't let the bot go crazy and talk to itself
     if message.author == client.user:
         return
-    elif 'vfl' in message.content.lower():
-        await message.channel.send("Burn the VFL to the ground!")
-    elif 'armtalent' in message.content.lower().replace(" ", ""):
-        await message.channel.send('Trevor Lawrence is the greatest quarterback of all time')
-    elif message.content is not None and '@1015369557701050478' not in message.content:
+
+    for key in keywords:
+        if key in message.content.lower().replace(" ", ""):
+            await message.channel.send(keywords[key])
+            return
+
+    if message.content is not None and '@1015369557701050478' not in message.content:
         return
 
     if 'sup' in message.content.lower():
