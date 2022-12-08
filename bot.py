@@ -15,7 +15,8 @@ keywords = {
     "armtalent": "Trevor Lawrence is the greatest quarterback of all time",
     "mikewhite": "Mike White. Mike White. Mike White. https://pbs.twimg.com/media/FimZOxHWYAAxShx.jpg",
     "jamaal": "He's a touchdown machine!!",
-    "williams": "Williams? Jamaal Williams is a touchdown machine!!"
+    "williams": "Williams? Jamaal Williams is a touchdown machine!!",
+    "ridder": "My leaguemate Ben, he shows his Ridder to my other leaguemate Phil, and he says, \"You will never get this! You will never get this! La la la la la!\""
 }
 
 @client.event
