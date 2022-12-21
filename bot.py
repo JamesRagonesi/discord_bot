@@ -17,7 +17,8 @@ keywords = {
     "browns": "https://media.tenor.com/CmVlj5fLMXQAAAAC/utah-utes-tyler-huntley.gif",
     "jamaal": "He's a touchdown machine!!",
     "williams": "Williams? Jamaal Williams is a touchdown machine!!",
-    "ridder": "My leaguemate Ben, he shows his Ridder to my other leaguemate Phil, and he says, \"You will never get this! You will never get this! La la la la la!\""
+    "ridder": "My leaguemate Ben, he shows his Ridder to my other leaguemate Phil, and he says, \"You will never get this! You will never get this! La la la la la!\"",
+    "minshew": "<:emoji_1:1055253645651877888> <:emoji_1:1055253645651877888> <:emoji_1:1055253645651877888> <:emoji_1:1055253645651877888> <:emoji_1:1055253645651877888> MINSHEW MANIA <:emoji_1:1055253645651877888> <:emoji_1:1055253645651877888> <:emoji_1:1055253645651877888> <:emoji_1:1055253645651877888> <:emoji_1:1055253645651877888>"
 }
 
 @client.event
