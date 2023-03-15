@@ -6,3 +6,4 @@
 !Pipfile.lock
 !fantasy_api.py
 !bot.py
+!db.py
