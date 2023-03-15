@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 LEAGUE_ID = os.getenv('FANTASY_LEAGUE_ID', default='44276')
-YEAR = os.getenv('FANTASY_YEAR', default='2022')
+YEAR = os.getenv('FANTASY_YEAR', default='2023')
 API_KEY = os.getenv('FANTASY_API_KEY')
 
 # Make a really gross URL string
