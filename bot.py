@@ -82,7 +82,7 @@ async def on_message(message):
 @tasks.loop(time=datetime.time(hour=15, minute=0))
 # @tasks.loop(seconds=5.0)
 async def countdown():
-    message_channel = client.get_channel(1015401006575652980)
+    message_channel = client.get_channel(954049443299205234)
 
     today = datetime.date.today()
     future = datetime.date(2023,8,5)
