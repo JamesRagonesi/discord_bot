@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run --env-file .env -d -v /tmp/data:/home/appuser/data discord_bot
+docker run --env-file .env -d --restart always -v ./data:/home/appuser/data discord_bot

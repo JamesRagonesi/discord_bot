@@ -1,4 +1,4 @@
-FROM python:3.7-alpine as base
+FROM python:3.8-alpine as base
 
 # Setup env
 ENV LANG C.UTF-8
@@ -21,9 +21,10 @@ FROM base AS runtime
 # Copy virtual env from python-deps stage
 COPY --from=python-deps /.venv /.venv
 ENV PATH="/.venv/bin:$PATH"
+ENV TZ="America/New_York"
 
 # Create and switch to a new user
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup && apk add --no-cache tzdata
 WORKDIR /home/appuser
 USER appuser
 

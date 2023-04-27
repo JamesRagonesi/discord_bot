@@ -3,14 +3,20 @@ import os
 import shlex
 import fantasy_api
 import db
+import datetime
+from pytz import timezone
 
 import discord
+from discord.ext import commands, tasks
+
 from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-client = discord.Client()
+intents = discord.Intents.default()
+intents.message_content = True
+client = discord.Client(intents=intents)
 
 keywords = {
     "vfl": "Burn the VFL to the ground!",
@@ -20,15 +26,14 @@ keywords = {
 # ensure db is ready to go
 keywords.update(db.init())
 
-print(keywords)
-
 @client.event
 async def on_ready():
     print(f'{client.user.name} has connected to Discord!')
+    countdown.start()
 
 @client.event
 async def on_message(message):
-    print(f'received message {message.content}')
+    print(f'received message {message.content} {message.channel}')
     lowercase_message = message.content.lower()
 
     # don't let the bot go crazy and talk to itself
@@ -73,5 +78,21 @@ async def on_message(message):
                 await message.channel.send('''
                     USAGE: @Feldkamp-Ragonesi Trophy Bot add "trigger word(s)" "response word(s)"
                 ''')
+
+@tasks.loop(time=datetime.time(hour=15, minute=0))
+# @tasks.loop(seconds=5.0)
+async def countdown():
+    message_channel = client.get_channel(1015401006575652980)
+
+    today = datetime.date.today()
+    future = datetime.date(2023,8,5)
+    diff = (future - today).days
+
+    await message_channel.send(f'Only {diff} more day(s) until the DWO draft!!!!')
+
+@countdown.before_loop
+async def before_countdown():
+    await client.wait_until_ready()
+    print('client is ready...')
 
 client.run(TOKEN)
