@@ -40,3 +40,6 @@ Run this from the root of the project directory
 $ docker build -t 531923694275.dkr.ecr.us-east-1.amazonaws.com/discord_bot .
 $ docker push 531923694275.dkr.ecr.us-east-1.amazonaws.com/discord_bot:latest
 ```
+
+## Build Locally
+docker build . -t discord_bot

@@ -34,33 +34,33 @@ async def on_ready():
 @client.event
 async def on_message(message):
     print(f'received message {message.content} {message.channel}')
-    lowercase_message = message.content.lower()
+    lowercase_words = message.content.lower().split()
 
     # don't let the bot go crazy and talk to itself
     if message.author == client.user:
         return
 
     for key in keywords:
-        if key in lowercase_message.replace(" ", ""):
+        if key in lowercase_words:
             await message.channel.send(keywords[key])
 
     if message.content is not None and '@1015369557701050478' not in message.content:
         return
 
-    if 'sup' in lowercase_message:
+    if 'sup' in lowercase_words:
         await message.channel.send('nmhjc')
 
-    elif 'rankings' in lowercase_message:
+    elif 'rankings' in lowercase_words:
         print('calculating power rankings')
         powerRankings = fantasy_api.getPowerRankings()
         await message.channel.send(powerRankings)
 
-    elif 'league' in lowercase_message:
+    elif 'league' in lowercase_words:
         league_info = fantasy_api.get_league()
         await message.channel.send(league_info)
 
     else:
-        ops = shlex.split(lowercase_message.strip('||'))
+        ops = shlex.split(message.content.lower().strip('||'))
         if('add' == ops[1]):
             try:
                 key = ops[2].replace(" ", "")
