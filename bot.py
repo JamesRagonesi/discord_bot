@@ -2,6 +2,7 @@
 import os
 import shlex
 import fantasy_api
+import openai_api
 import db
 import datetime
 from pytz import timezone
@@ -58,6 +59,11 @@ async def on_message(message):
     elif 'league' in lowercase_words:
         league_info = fantasy_api.get_league()
         await message.channel.send(league_info)
+
+    elif 'chat' in lowercase_words:
+        chat_message = ''.join(lowercase_words[2::])
+        response = openai_api.chat(chat_message)
+        await message.channel.send(response)
 
     else:
         ops = shlex.split(message.content.lower().strip('||'))

@@ -9,6 +9,7 @@ python-dotenv = "*"
 requests = "*"
 schedule = "*"
 pytz = "*"
+openai = "*"
 
 [dev-packages]
 
