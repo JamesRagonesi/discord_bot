@@ -34,7 +34,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    print(f'received message {message.content} {message.channel}')
+    # print(f'received message {message.content} {message.channel}')
     lowercase_words = message.content.lower().split()
 
     # don't let the bot go crazy and talk to itself
