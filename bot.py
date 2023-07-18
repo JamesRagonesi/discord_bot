@@ -94,7 +94,12 @@ async def countdown():
     future = datetime.date(2023,8,5)
     diff = (future - today).days
 
-    await message_channel.send(f'Only {diff} more day(s) until the DWO draft!!!!')
+    if diff == 1:
+        await message_channel.send(f'Tomorrow is the DWO draft! If you dont know who Kyle Phillips is then dont bother showing up.')
+    elif diff == 0:
+        await message_channel.send('Its DRAFT DAY mother fers!!!! https://media.tenor.com/fOVZtjnzXpwAAAAC/draft-day-football.gif')
+    elif diff > 0:
+        await message_channel.send(f'Only {diff} more day(s) until the DWO draft!!!!')
 
 @countdown.before_loop
 async def before_countdown():
